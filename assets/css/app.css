@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,600;1,400;0,700;1,600&display=swap');
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+.bg-landing {
+  background: url('../images/bg.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.button {
+  border-radius: 22px;
+  background: linear-gradient(180deg, #3913B8 0%, #8352FD 100%);
+  padding: 8px 32px;
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+
+  color: #FFFFFF;
+}
+
+.button:hover {
+  box-shadow: 0px 4px 10px rgba(78, 37, 203, 0.7);
+}
+
+.button:active {
+  box-shadow: 0px 4px 15px rgba(78, 37, 203, 0.7);
+}
