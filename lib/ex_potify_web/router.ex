@@ -18,6 +18,9 @@ defmodule ExPotifyWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/authorize", AuthController, :authorize
+    get "/callback", AuthController, :callback
+    get "/playlists", PlaylistController, :index
   end
 
   # Other scopes may use custom stacks.
