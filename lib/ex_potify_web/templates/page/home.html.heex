@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="csrf-token" content={csrf_token_value()}>
+    <%= live_title_tag assigns[:page_title] || "ExPotify", suffix: " · Phoenix Framework" %>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+  </head>
+  <body class="">
+    <div class="bg-landing w-full h-screen flex justify-center items-center">
+      <div class="card bg-[#1A2151] flex w-[1024px] h-[673px] rounded-[30px]" style="box-shadow: -10px 10px 40px #421DB4;">
+        <div class="items-baseline rounded-[30px] w-[256px] bg-[#161C44] h-full">
+          <nav class="pt-[16px] pl-[24px]">
+            <h2 class="font-[roboto] text-[40px] font-bold text-[#DB00FF]">
+              Ex<span class="text-[#9611FF] italic">Potify</span>
+            </h2>
+            <ul class="pt-[16px] text-[#F2F6FF]">
+              <li class="pb-[4px] cursor-pointer">
+                <span class="font-semibold">Home</span>
+              </li>
+              <li class="pb-[4px] cursor-pointer">
+                <span class="opacity-[0.7]">Search</span>
+              </li>
+              <li class="pb-[4px] cursor-pointer">
+                <span class="opacity-[0.7]">Library</span>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="playlists pt-[24px] pl-[24px]">
+            <h3 class="text-[24px] text-[#F2F6FF] font-bold opacity-[0.70] mb-[8px]">
+              Playlists
+            </h3>
+
+            <ul>
+              <li class="text-[#F2F6FF] pb-[4px] text-sm">
+                <span class="opacity-100">Feels Good Friday</span>
+              </li>
+              <li class="text-[#F2F6FF] pb-[4px] text-sm">
+                <span class="opacity-75">Golden Songs</span>
+              </li>
+              <li class="text-[#F2F6FF] pb-[4px] text-sm">
+                <span class="opacity-75">maneho #1</span>
+              </li>
+              <li class="text-[#F2F6FF] pb-[4px] text-sm">
+                <span class="opacity-75">idk</span>
+              </li>
+              <li class="text-[#F2F6FF] pb-[4px] text-sm">
+                <span class="opacity-75">Nu Metal Era</span>
+              </li>
+              <li class="text-[#F2F6FF] pb-[4px] text-sm">
+                <span class="opacity-75">My Playlist #5</span>
+              </li>
+              <li class="text-[#F2F6FF] pb-[4px] text-sm">
+                <span class="opacity-75">Guilty Pleasures</span>
+              </li>
+              <li class="text-[#F2F6FF] pb-[4px] text-sm">
+                <span class="opacity-75">Best house music 2015-2022</span>
+              </li>
+              <li class="text-[#F2F6FF] pb-[4px] text-sm">
+                <span class="opacity-75">20s 30s 40s music</span>
+              </li>
+              <li class="text-[#F2F6FF] pb-[4px] text-sm">
+                <span class="opacity-75">Lost Stars</span>
+              </li>
+              <li class="text-[#F2F6FF] pb-[4px] text-sm">
+                <span class="opacity-75">mellow</span>
+              </li>
+              <li class="text-[#F2F6FF] pb-[4px] text-sm">
+                <span class="opacity-75">Jogging</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="flex flex-col justify-center items-center rounded-tr-[30px] rounded-br-[30px] h-full bg-[#1A2151] w-100 grow">
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
