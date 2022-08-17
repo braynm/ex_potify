@@ -41,4 +41,82 @@ liveSocket.connect()
 // >> liveSocket.enableLatencySim(1000)  // enabled for duration of browser session
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
+window.onSpotifyWebPlaybackSDKReady = () => {
+  const token = 'BQCh27vuG3MFcnQyAuBBxL0iqBb2gKrybi6_dEYdoVASE_n-h7s6nRUR3GN1rKnsKSMAciDPY8x6mmKuEUJDEYGZ7EUsZt52M85nymSH1365GW9f-p1Rwq8pg5gO9m9q3j8KW7FRekUIgOFXZ736e8ya7F2Id6rvtFjdGXyuFcgBDpDcOebyPy3E3_7LvlYc8Gu9XTEu58ceJXShQDaxdisIuN_RnDKJu0slreby2QaRh7S9nb9SV9Avm-KzpWrhE_LRLNr0Zg6S_JO_i-UeG7l3kTeKbrU-SL_a5lxB';
+  const player = new Spotify.Player({
+    name: 'ExPotify',
+    getOAuthToken: cb => {
+     cb(token);
+    },
+    volume: 1
+  });
 
+
+  let togglePlay = false
+  player.addListener('initialization_error', ({ message }) => {
+    console.error(message);
+  });
+
+  player.addListener('authentication_error', ({ message }) => {
+    console.error(message);
+  });
+
+  player.addListener('account_error', ({ message }) => {
+    console.error(message);
+  });
+
+  player.addListener('playback_error', ({ message }) => {
+    console.error(message);
+  });
+
+  function millisToMinutesAndSeconds(millis) {
+    const minutes = Math.floor(millis / 60000);
+    const seconds = ((millis % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+  }
+
+  const track = document.getElementById('track')
+  const currentDuration = document.getElementById('currentDuration')
+  const totalDuration = document.getElementById('duration')
+  let progressInPercentage = 0
+  let progress = 0
+  let timing = setInterval(() => {}, 1000)
+  player.addListener('player_state_changed', ({
+   position,
+    duration,
+    track_window: { current_track },
+    paused
+  }) => {
+    console.log('Currently Playing', current_track);
+    console.log('Position in Song', position);
+    console.log('Duration of Song', duration);
+    totalDuration.textContent = millisToMinutesAndSeconds(duration)
+
+    track.max = duration
+    progressPerSec = duration / 1000
+
+    clearInterval(timing)
+
+    if (paused) {
+      togglePlay = false
+    } else {
+      timing  = setInterval(() => {
+        track.value = position !== 0 ? position : progressPerSec
+        console.log({ position, duration, currentPos: progressPerSec })
+        currentDuration.textContent = millisToMinutesAndSeconds(progressPerSec)
+
+        progressPerSec = position !== 0 ? position + 1000 : progressPerSec + 1000
+        position = 0
+
+      }, 1000)
+      player.resume()
+    }
+  });
+
+
+  player.connect()
+
+  player.addListener('ready', ({ device_id }) => {
+    console.log('Ready with Device ID', device_id);
+  });
+}

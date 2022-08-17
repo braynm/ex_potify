@@ -5,9 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="csrf-token" content={csrf_token_value()}>
-    <%= live_title_tag assigns[:page_title] || "ExPotify", suffix: " · Phoenix Framework" %>
+    <%= live_title_tag assigns[:page_title] || "ExPotify" %>
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+    <script>
+
+    </script>
   </head>
   <body class="">
     <div class="bg-landing w-full h-screen flex justify-center items-center">
@@ -21,6 +25,11 @@
               <img height="16" width="16" src="images/play-6(24x24)@2.png"/>
             </div>
             <img class="cursor-pointer opacity-[0.6]" height="24" width="24" src="images/step-forward(24x24)@2.png"/>
+            <div>
+              <span id="currentDuration" class="text-[#fff]">0:00</span>
+              <progress id="track" max="100" value="0.01"> 0% </progress>
+              <span id="duration" class="text-[#fff]">3:38</span>
+            </div>
           </div>
         </div>
         <div class="items-baseline rounded-[30px] w-[256px] bg-[#161C44] h-full">
@@ -102,6 +111,7 @@
                 <span class="text-[#F2F6FF] ml-[4px] font-light text-[12px]">3k likes</span>
                 <span class="text-[#F2F6FF] font-light text-[12px]">53 songs</span>
                 <span class="text-[#F2F6FF] ml-[4px] font-light text-[12px]">6 hr 7 min</span>
+
               </div>
             </div>
           </div>

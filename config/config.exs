@@ -73,8 +73,17 @@ config :spotify_ex,
     "user-read-playback-position",
     "user-top-read",
     "playlist-read-private",
+    "playlist-read-collaborative",
+    "playlist-modify-public",
+    "playlist-modify-private",
     "user-read-email",
-    "user-library-read"
+    "user-library-read",
+    "app-remote-control",
+    "streaming",
+    "user-modify-playback-state",
+    "user-read-playback-state",
+    "user-read-currently-playing",
+    "user-read-private"
   ]
 
 import_config "#{config_env()}.exs"

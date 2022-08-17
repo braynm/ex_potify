@@ -33,3 +33,10 @@
 .button:active {
   box-shadow: 0px 4px 15px rgba(78, 37, 203, 0.7);
 }
+
+.play-pause {
+  background: linear-gradient(269.9deg, rgba(47, 181, 252, 0.5) 5.21%, #2FB5FC 110.37%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
