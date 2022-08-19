@@ -2,6 +2,7 @@ defmodule ExPotify.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
+  @registry :workers_registry
 
   use Application
 
@@ -15,9 +16,8 @@ defmodule ExPotify.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: ExPotify.PubSub},
       # Start the Endpoint (http/https)
-      ExPotifyWeb.Endpoint
-      # Start a worker by calling: ExPotify.Worker.start_link(arg)
-      # {ExPotify.Worker, arg}
+      ExPotifyWeb.Endpoint,
+      {ExPotify.TokenSupervisor, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
