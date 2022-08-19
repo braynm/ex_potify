@@ -32,51 +32,8 @@
           </li>
         </ul>
       </nav>
-
-      <div class="playlists pt-[24px] pl-[24px]">
-        <h3 class="text-[24px] text-[#F2F6FF] font-bold opacity-[0.70] mb-[8px]">
-          Playlists
-        </h3>
-
-        <ul>
-          <li class="text-[#F2F6FF] pb-[4px] text-sm">
-            <span class="opacity-100">Feels Good Friday</span>
-          </li>
-          <li class="text-[#F2F6FF] pb-[4px] text-sm">
-            <span class="opacity-75">Golden Songs</span>
-          </li>
-          <li class="text-[#F2F6FF] pb-[4px] text-sm">
-            <span class="opacity-75">maneho #1</span>
-          </li>
-          <li class="text-[#F2F6FF] pb-[4px] text-sm">
-            <span class="opacity-75">idk</span>
-          </li>
-          <li class="text-[#F2F6FF] pb-[4px] text-sm">
-            <span class="opacity-75">Nu Metal Era</span>
-          </li>
-          <li class="text-[#F2F6FF] pb-[4px] text-sm">
-            <span class="opacity-75">My Playlist #5</span>
-          </li>
-          <li class="text-[#F2F6FF] pb-[4px] text-sm">
-            <span class="opacity-75">Guilty Pleasures</span>
-          </li>
-          <li class="text-[#F2F6FF] pb-[4px] text-sm">
-            <span class="opacity-75">Best house music 2015-2022</span>
-          </li>
-          <li class="text-[#F2F6FF] pb-[4px] text-sm">
-            <span class="opacity-75">20s 30s 40s music</span>
-          </li>
-          <li class="text-[#F2F6FF] pb-[4px] text-sm">
-            <span class="opacity-75">Lost Stars</span>
-          </li>
-          <li class="text-[#F2F6FF] pb-[4px] text-sm">
-            <span class="opacity-75">mellow</span>
-          </li>
-          <li class="text-[#F2F6FF] pb-[4px] text-sm">
-            <span class="opacity-75">Jogging</span>
-          </li>
-        </ul>
-      </div>
+      <ExPotifyWeb.Playlist.index playlists={@playlists}>
+      </ExPotifyWeb.Playlist.index>
     </div>
     <div class="flex pt-[32px] pl-[16px] rounded-tr-[30px] rounded-br-[30px] h-full bg-[#1A2151] w-100 grow">
       <div class="playlist-header flex flex-row max-h-[240px]">
