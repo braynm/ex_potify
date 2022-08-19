@@ -1,5 +1,5 @@
 defmodule ExPotify.Account do
-  alias ExPotify.Repo
+  import Ecto.Query
 
   @doc """
   Inserts or update an account, this is used on register and register and login with Spotify
@@ -10,10 +10,8 @@ defmodule ExPotify.Account do
   def insert_or_update_account(data) do
     changeset = ExPotify.Account.AccountSchema.insert_or_update_account_changeset(data)
 
-    IO.inspect(String.length(data.refresh_token))
-
     if changeset.valid? == true do
-      Repo.insert(
+      ExPotify.Repo.insert(
         changeset,
         conflict_target: :username,
         on_conflict: {:replace, [:username, :access_token, :refresh_token, :email]}
@@ -21,5 +19,15 @@ defmodule ExPotify.Account do
     else
       {:error, changeset.errors}
     end
+  end
+
+  @doc """
+  Fetch account by username
+  """
+  @spec fetch_account(binary()) :: map()
+  def fetch_account(user_id) do
+    query = from acc in ExPotify.Account.AccountSchema, where: acc.username == ^user_id
+
+    ExPotify.Repo.one(query)
   end
 end
