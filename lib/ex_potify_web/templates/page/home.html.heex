@@ -32,8 +32,10 @@
           </li>
         </ul>
       </nav>
-      <ExPotifyWeb.Playlist.index playlists={@playlists}>
-      </ExPotifyWeb.Playlist.index>
+      <div>
+        <%= live_render(@conn, ExPotifyWeb.PlaylistLive) %>
+      </div>
+
     </div>
     <div class="flex pt-[32px] pl-[16px] rounded-tr-[30px] rounded-br-[30px] h-full bg-[#1A2151] w-100 grow">
       <div class="playlist-header flex flex-row max-h-[240px]">
