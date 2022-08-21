@@ -1,5 +1,6 @@
 // We import the CSS which is extracted to its own file by esbuild.
 // Remove this line if you add a your own CSS build pipeline (e.g postcss).
+//import "../css/app.css"
 
 // If you want to use Phoenix channels, run `mix help phx.gen.channel`
 // to get started and then uncomment the line below.
@@ -23,15 +24,73 @@ import "phoenix_html"
 // Establish Phoenix Socket and LiveView configuration.
 import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
+
+import "mdn-polyfills/Object.assign"
+import "mdn-polyfills/CustomEvent"
+import "mdn-polyfills/String.prototype.startsWith"
+import "mdn-polyfills/Array.from"
+import "mdn-polyfills/Array.prototype.find"
+import "mdn-polyfills/Array.prototype.some"
+import "mdn-polyfills/NodeList.prototype.forEach"
+import "mdn-polyfills/Element.prototype.closest"
+import "mdn-polyfills/Element.prototype.matches"
+import "mdn-polyfills/Node.prototype.remove"
+import "child-replace-with-polyfill"
+import "url-search-params-polyfill"
+import "formdata-polyfill"
+import "classlist-polyfill"
+import "new-event-polyfill"
+import "@webcomponents/template"
+import "shim-keyboard-event-key"
+import "core-js/features/set"
+import "core-js/features/url"
+
 import topbar from "../vendor/topbar"
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
-let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}})
+let isAllLoaded = false
+let hooks = {
+  Scroll: {
+    mounted() {
+      this.observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && isAllLoaded === false) {
+            console.log('testing....')
+            this.pushEvent("load_more", {})
+          }
+        },
+        { rootMargin: "0px", threshold: 1.0, }
+      );
+
+      this.observer.observe(this.el);
+      this.handleEvent("all_loaded", data => {
+        isAllLoaded = true
+      })
+    }
+  },
+  beforeDestroy() {
+    this.observer.unobserve(this.el)
+  }
+}
+let liveSocket = new LiveSocket("/live", Socket, {hooks, params: {_csrf_token: csrfToken}})
 
 // Show progress bar on live navigation and form submits
 topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})
 window.addEventListener("phx:page-loading-start", info => topbar.show())
 window.addEventListener("phx:page-loading-stop", info => topbar.hide())
+
+window.addEventListener("phx:page-loading-start", () => {
+  if(!topBarScheduled) {
+    topBarScheduled = setTimeout(() => topbar.show(), 200)
+  }
+})
+
+window.addEventListener("phx:page-loading-stop", () => {
+  clearTimeout(topBarScheduled)
+  topBarScheduled = undefined
+  console.log('hey..asdsadasd')
+  topbar.hide()
+})
 
 // connect if there are any LiveViews on the page
 liveSocket.connect()
@@ -120,3 +179,5 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     console.log('Ready with Device ID', device_id);
   });
 }
+
+
