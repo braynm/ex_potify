@@ -39,6 +39,8 @@ defmodule ExPotify.TokenRefresher do
     account = ExPotify.Account.fetch_account(user_id)
 
     new_state = request_new_access_token(account)
+
+    Process.send_after(self(), :refresh, 60 * 1000)
     {:noreply, new_state}
   end
 
