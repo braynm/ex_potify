@@ -31,19 +31,7 @@ defmodule ExPotifyWeb.AuthController do
       |> redirect(to: "/home")
     else
       err ->
-        IO.inspect("something went wrong: #{err}")
+        IO.inspect("something went wrong: #{inspect(err)}")
     end
-  end
-
-  def test(conn, params) do
-    conn =
-      Spotify.Cookies.set_refresh_cookie(
-        conn,
-        "AQDxw53IorzJbHEVJpWuaEyM4UCAfSmd9CjA65zVE8HKPVb-MiIqg16vuJWbhu7j9KkKQFZL4WGs7-X8kmOaOT60AGxDfve7TH4uN6rTgtPK1t9NhC-vM_PJfFX8QFeDbEg"
-      )
-
-    IO.inspect(Spotify.Cookies.get_refresh_token(conn))
-    IO.inspect(conn)
-    conn
   end
 end
