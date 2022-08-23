@@ -40,3 +40,24 @@
   align-items: center;
   justify-content: center;
 }
+
+.user-menu {
+  top: 20px;
+  right: 20px;
+}
+
+.user-menu-dropdown {
+  background: rgba(217, 217, 217, 0.4);
+  cursor: pointer;
+  width: auto;
+  height: 32px;
+  border-radius: 22px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-menu-content {
+  background: rgba(217, 217, 217, 0.4);
+  border-radius: 22px;
+}
+

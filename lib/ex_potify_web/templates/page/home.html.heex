@@ -1,4 +1,26 @@
   <div class="card relative bg-[#1A2151] flex w-[1024px] h-[673px] rounded-[30px]" style="box-shadow: -10px 10px 40px #421DB4;">
+    <div class="absolute user-menu">
+      <div class="user-menu-dropdown px-2">
+        <div class="flex items-center mr-4">
+          <img src="../images/profile---filled(24x24)@2x.png" width="16" height="16"/>
+          <span class="text-[#E3E8FF] text-sm pl-2">b.madrid</span>
+        </div>
+        <img src="../images/caret-down---filled(24x24)@1x.png" width="16" height="16"/>
+      </div>
+      <div class="user-menu-content mt-4">
+        <ul class="text-[#E3E8FF] text-sm px-4 py-2">
+          <li class="pb-1">
+            <a href="">Account</a>
+          </li>
+          <li class="pb-1">
+            <a href="">Uninstall this App</a>
+          </li>
+          <li class="pb-1">
+            <a href="">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
     <div class="flex absolute h-[90px] w-full bottom-[0px] z-10 bg-[#161C44] rounded-[30px]">
       <div class="min-w-[256px]">
       </div>
@@ -35,29 +57,6 @@
       <div>
         <%= live_render(@conn, ExPotifyWeb.PlaylistLive) %>
       </div>
-
     </div>
-    <div class="flex pt-[32px] pl-[16px] rounded-tr-[30px] rounded-br-[30px] h-full bg-[#1A2151] w-100 grow">
-      <div class="playlist-header flex flex-row max-h-[240px]">
-        <div class="playlist-cover mr-[32px]">
-          <img class="rounded-[10px]" width="232" height="232" src="../images/playlist-cover.png"/>
-        </div>
-        <div class="playlist-description flex flex-col justify-center font-[roboto]">
-          <div class="mb-[32px]">
-            <span class="text-[16px] text-[#F2F6FF] opacity-[.70]">Playlist</span>
-            <h2 class="text-[#F2F6FF] text-[32px] font-bold">Feel Good Friday</h2>
-          </div>
-          <div>
-            <p class="text-[#F2F6FF] opacity-[.70] font-normal text-[12px]">Uplifting anthems to power you through 'til the weekend.</p>
-            <span class="text-[#F2F6FF] font-normal text-[12px]">Bryan</span>
-            <span class="text-[#F2F6FF] ml-[4px] font-light text-[12px]">3k likes</span>
-            <span class="text-[#F2F6FF] font-light text-[12px]">53 songs</span>
-            <span class="text-[#F2F6FF] ml-[4px] font-light text-[12px]">6 hr 7 min</span>
-
-          </div>
-        </div>
-      </div>
-      <div class="playlist-tracks">
-      </div>
-    </div>
+      <%= live_render(@conn, ExPotifyWeb.PlaylistInfoLive) %>
   </div>
