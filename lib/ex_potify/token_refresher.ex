@@ -40,12 +40,13 @@ defmodule ExPotify.TokenRefresher do
 
     new_state = request_new_access_token(account)
 
+    IO.inspect(DateTime.utc_now())
+
     Process.send_after(self(), :refresh, 60 * 1000)
     {:noreply, new_state}
   end
 
   def handle_call(:get_token, from, %{access_token: token} = state) do
-    IO.inspect(from)
     {:reply, token, state}
   end
 
