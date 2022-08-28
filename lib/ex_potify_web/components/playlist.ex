@@ -3,7 +3,6 @@ defmodule ExPotifyWeb.Playlist do
   use Phoenix.Component
 
   def index(assigns) do
-    IO.inspect(assigns)
     # conn = Spotify.Cookies.set_access_cookie(%{}, access_token)
 
     # playlists = Spotify.Playlist.get_current_user_playlists(conn, limit: 10)
