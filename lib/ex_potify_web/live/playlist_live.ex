@@ -45,9 +45,6 @@ defmodule ExPotifyWeb.PlaylistLive do
       socket
       |> assign("playlist", playlist_details)
 
-    IO.inspect("@@@@@@@@@@@@@2")
-    IO.inspect(playlist_details)
-
     {:noreply, socket}
   end
 
@@ -67,10 +64,12 @@ defmodule ExPotifyWeb.PlaylistLive do
              <li
                id={item.id}
                class="text-[#F2F6FF] pb-[6px] text-sm"
-               phx-click="select_playlist"
+               phx-click={JS.push("select_playlist", target: "#playlist-info")}
                phx-value-playlist_id={item.id}
                phx-value-owner_id={item.owner["id"]}
+               phx-value-session_id={@session_id}
                phx-value-name={item.name}
+               phx-value-description={item.description}
                phx-value-img_url={List.first(item.images)["url"]}
              >
                <span class="cursor-pointer opacity-75"><%= item.name %></span>
