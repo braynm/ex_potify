@@ -3,6 +3,10 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+main.container {
+  display: flex;
+  flex-direction: column;
+}
 
 .bg-landing {
   background: url('../images/bg.png') no-repeat center center fixed;
@@ -61,3 +65,26 @@
   border-radius: 22px;
 }
 
+.nowrap {
+  white-space: nowrap;
+}
+
+tbody tr {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+tbody tr:hover {
+  background-color: rgba(217, 217, 217, 0.4);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+tbody tr:active {
+  background-color: rgba(150, 17, 255, 0.7);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px;
+}
