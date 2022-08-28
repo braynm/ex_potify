@@ -13,7 +13,6 @@ defmodule ExPotifyWeb.PlaylistLive do
       |> assign(:offset, paging.offset + 50)
       |> assign(:total, paging.total)
 
-    IO.inspect(List.first(paging.items))
     {:ok, socket, temporary_assigns: [playlists: []]}
   end
 
