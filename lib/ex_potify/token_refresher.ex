@@ -42,7 +42,7 @@ defmodule ExPotify.TokenRefresher do
 
     IO.inspect(DateTime.utc_now())
 
-    Process.send_after(self(), :refresh, 60 * 1000)
+    Process.send_after(self(), :refresh, 60 * 60 * 1000)
     {:noreply, new_state}
   end
 
