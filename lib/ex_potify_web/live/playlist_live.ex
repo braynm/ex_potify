@@ -16,13 +16,15 @@ defmodule ExPotifyWeb.PlaylistLive do
     {:ok, socket, temporary_assigns: [playlists: []]}
   end
 
-  def handle_event("load_more", _payload, socket) do
+  def handle_event("load_more_playlists", _payload, socket) do
     offset = socket.assigns[:offset]
     total = socket.assigns[:total]
     session_id = socket.assigns[:session_id]
 
     if offset < total do
-      {:ok, paging} = fetch_playlist(session_id, offset)
+      {:ok, paging} =
+        fetch_playlist(session_id, offset)
+        |> IO.inspect()
 
       socket =
         socket
@@ -31,24 +33,18 @@ defmodule ExPotifyWeb.PlaylistLive do
 
       {:noreply, socket}
     else
-      {:noreply, push_event(socket, "all_loaded", %{})}
+      {:noreply, push_event(socket, "all_items_loaded", %{})}
     end
-  end
-
-  def handle_event("select_playlist", payload, socket) do
-    %{"playlist_id" => playlist_id, "owner_id" => owner_id} = payload
-    session_id = socket.assigns[:session_id]
-    playlist_details = ExPotify.Playlist.get_playlist_details(session_id, owner_id, playlist_id)
-
-    socket =
-      socket
-      |> assign("playlist", playlist_details)
-
-    {:noreply, socket}
   end
 
   defp fetch_playlist(session_id, offset) do
     ExPotify.Playlist.get_user_playlist(session_id, offset)
+  end
+
+  defp select_playlist(id) do
+    JS.push("select_playlist", target: "#playlist-info")
+    |> JS.remove_class("opacity-100 font-bold", to: ".playlist-name")
+    |> JS.add_class("opacity-100 font-bold", to: "#playlist-name-#{id}")
   end
 
   def render(assigns) do
@@ -63,19 +59,22 @@ defmodule ExPotifyWeb.PlaylistLive do
              <li
                id={item.id}
                class="text-[#F2F6FF] pb-[6px] text-sm"
-               phx-click={JS.push("select_playlist", target: "#playlist-info")}
+               phx-click={
+                select_playlist(item.id)
+               }
                phx-value-playlist_id={item.id}
                phx-value-owner_id={item.owner["id"]}
+               phx-value-playlist_uri={item.uri}
                phx-value-session_id={@session_id}
                phx-value-name={item.name}
                phx-value-description={item.description}
                phx-value-img_url={List.first(item.images)["url"]}
              >
-               <span class="cursor-pointer opacity-75"><%= item.name %></span>
+               <span id={"playlist-name-#{item.id}"} class={"playlist-name cursor-pointer opacity-75"}><%= item.name %></span>
              </li>
            <% end %>
          </ul>
-         <span id="playlist-scroll" phx-hook="Scroll"></span>
+         <span id="playlist-scroll" phx-hook="PlaylistPagination"></span>
        </div>
      </div>
     """

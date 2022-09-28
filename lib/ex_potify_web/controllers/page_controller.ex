@@ -11,7 +11,15 @@ defmodule ExPotifyWeb.PageController do
   end
 
   def home(conn, _) do
+    %{"id" => session_id} = get_session(conn)
+
     conn
-    |> render("home.html")
+    |> render("home.html", session_id: session_id)
   end
+
+  def logout(conn, _),
+    do:
+      conn
+      |> clear_session()
+      |> redirect(to: Routes.page_path(Endpoint, :index))
 end
