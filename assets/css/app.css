@@ -87,4 +87,37 @@ tbody tr:active {
   border-radius: 8px;
   cursor: pointer;
   padding: 10px;
+  box-shadow: 0 0px 10px #000;
+}
+
+.track-active {
+  background-color: rgba(150, 17, 255, 0.7);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.user-menu {
+  min-width: 148px;
+}
+
+.user-menu-content {
+  display: none;
+}
+
+.user-menu:hover .user-menu-content {
+  display: block;
+}
+
+progress[value]::-moz-progress-bar {
+      /* style rules */
+  border-radius: inherit;
+  background: linear-gradient(269.9deg, rgba(47, 181, 252, 0.5) 5.21%, #2FB5FC 110.37%);
+}
+
+progress[value]::after {
+  height: 50px;
+  width: 50px;
+  background: red;
+  content: "@@";
 }
