@@ -14,10 +14,10 @@ config :ex_potify, ExPotifyWeb.Endpoint, cache_static_manifest: "priv/static/cac
 # Do not print debug messages in production
 config :logger, level: :info
 
-config :spotify_ex,
-  client_id: System.get_env("CLIENT_ID"),
-  secret_key: System.get_env("CLIENT_SECRET"),
-  callback_url: System.get_env("CALLBACK_URL")
+# config :spotify_ex,
+# client_id: System.get_env("CLIENT_ID"),
+# secret_key: System.get_env("CLIENT_SECRET"),
+# callback_url: System.get_env("CALLBACK_URL")
 
 config :spotify_ex,
   scopes: [

@@ -75,11 +75,6 @@ config :phoenix, :stacktrace_depth, 20
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
 
-# config :spotify_ex,
-# client_id: "71a16af544cd4cd183e3a80824c383d5",
-# secret_key: "322265b877384c23bbc75c1216128d99",
-# callback_url: "http://localhost:4001/callback"
-
 config :spotify_ex,
   client_id: System.get_env("CLIENT_ID"),
   secret_key: System.get_env("CLIENT_SECRET"),
