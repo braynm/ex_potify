@@ -1,4 +1,4 @@
-defmodule ExPotify.MixProject do
+defmodule ExPotify.MixProinsert_or_update_accountject do
   use Mix.Project
 
   def project do
@@ -51,7 +51,8 @@ defmodule ExPotify.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:tailwind, "~> 0.1.6", runtime: Mix.env() == :dev},
-      {:spotify_ex, "~> 2.3.0"}
+      {:spotify_ex, "~> 2.3.0"},
+      {:pbcs, "~> 0.1.0"}
     ]
   end
 

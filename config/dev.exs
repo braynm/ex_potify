@@ -19,7 +19,7 @@ config :ex_potify, ExPotify.Repo,
 config :ex_potify, ExPotifyWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}, port: 4000],
+  http: [ip: {127, 0, 0, 1}, port: 4001],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
@@ -74,3 +74,28 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :spotify_ex,
+  client_id: System.get_env("CLIENT_ID"),
+  secret_key: System.get_env("CLIENT_SECRET"),
+  callback_url: System.get_env("CALLBACK_URL")
+
+config :spotify_ex,
+  scopes: [
+    "user-read-playback-state",
+    # "user-read-recently-played",
+    # "user-read-playback-position",
+    # "user-top-read",
+    "playlist-read-private",
+    "playlist-read-collaborative",
+    # "playlist-modify-public",
+    # "playlist-modify-private",
+    "user-read-email",
+    "user-library-read",
+    "app-remote-control",
+    "streaming",
+    "user-modify-playback-state",
+    "user-read-playback-state",
+    # "user-read-currently-playing",
+    "user-read-private"
+  ]

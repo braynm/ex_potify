@@ -1,114 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="csrf-token" content={csrf_token_value()}>
-    <%= live_title_tag assigns[:page_title] || "ExPotify", suffix: " · Phoenix Framework" %>
-    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
-    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
-  </head>
-  <body class="">
-    <div class="bg-landing w-full h-screen flex justify-center items-center">
-      <div class="card relative bg-[#1A2151] flex w-[1024px] h-[673px] rounded-[30px]" style="box-shadow: -10px 10px 40px #421DB4;">
-        <div class="flex absolute h-[90px] w-full bottom-[0px] z-10 bg-[#161C44] rounded-[30px]">
-          <div class="min-w-[256px]">
-          </div>
-          <div class="controls grow flex items-center justify-center">
-            <img class="mr-[8px] cursor-pointer opacity-[0.6]" height="24" width="24" src="images/step-backward(24x24)@2(2).png"/>
-            <div class="play-pause cursor-pointer mr-[8px] w-[24px] h-[24px] rounded-[22px] z-[200]">
-              <img height="16" width="16" src="images/play-6(24x24)@2.png"/>
-            </div>
-            <img class="cursor-pointer opacity-[0.6]" height="24" width="24" src="images/step-forward(24x24)@2.png"/>
-          </div>
+  <div class="card relative bg-[#1A2151] flex w-[1024px] h-[673px] rounded-[30px]" style="box-shadow: -10px 10px 40px #421DB4;">
+    <div class="absolute user-menu z-20">
+      <div class="user-menu-dropdown px-2 hover:ring-2 active:ring-[#9611FF] active:ring-4">
+        <div class="flex items-center mr-4">
+          <img src="../images/profile---filled(24x24)@2x.png" width="16" height="16"/>
+          <span class="text-[#E3E8FF] text-sm pl-2"><%= @session_id %></span>
         </div>
-        <div class="items-baseline rounded-[30px] w-[256px] bg-[#161C44] h-full">
-          <nav class="pt-[16px] pl-[24px]">
-            <h2 class="font-[roboto] text-[40px] font-bold text-[#DB00FF]">
-              Ex<span class="text-[#9611FF] italic">Potify</span>
-            </h2>
-            <ul class="pt-[16px] text-[#F2F6FF]">
-              <li class="pb-[4px] cursor-pointer">
-                <span class="font-semibold">Home</span>
-              </li>
-              <li class="pb-[4px] cursor-pointer">
-                <span class="opacity-[0.7]">Search</span>
-              </li>
-              <li class="pb-[4px] cursor-pointer">
-                <span class="opacity-[0.7]">Library</span>
-              </li>
-            </ul>
-          </nav>
-
-          <div class="playlists pt-[24px] pl-[24px]">
-            <h3 class="text-[24px] text-[#F2F6FF] font-bold opacity-[0.70] mb-[8px]">
-              Playlists
-            </h3>
-
-            <ul>
-              <li class="text-[#F2F6FF] pb-[4px] text-sm">
-                <span class="opacity-100">Feels Good Friday</span>
-              </li>
-              <li class="text-[#F2F6FF] pb-[4px] text-sm">
-                <span class="opacity-75">Golden Songs</span>
-              </li>
-              <li class="text-[#F2F6FF] pb-[4px] text-sm">
-                <span class="opacity-75">maneho #1</span>
-              </li>
-              <li class="text-[#F2F6FF] pb-[4px] text-sm">
-                <span class="opacity-75">idk</span>
-              </li>
-              <li class="text-[#F2F6FF] pb-[4px] text-sm">
-                <span class="opacity-75">Nu Metal Era</span>
-              </li>
-              <li class="text-[#F2F6FF] pb-[4px] text-sm">
-                <span class="opacity-75">My Playlist #5</span>
-              </li>
-              <li class="text-[#F2F6FF] pb-[4px] text-sm">
-                <span class="opacity-75">Guilty Pleasures</span>
-              </li>
-              <li class="text-[#F2F6FF] pb-[4px] text-sm">
-                <span class="opacity-75">Best house music 2015-2022</span>
-              </li>
-              <li class="text-[#F2F6FF] pb-[4px] text-sm">
-                <span class="opacity-75">20s 30s 40s music</span>
-              </li>
-              <li class="text-[#F2F6FF] pb-[4px] text-sm">
-                <span class="opacity-75">Lost Stars</span>
-              </li>
-              <li class="text-[#F2F6FF] pb-[4px] text-sm">
-                <span class="opacity-75">mellow</span>
-              </li>
-              <li class="text-[#F2F6FF] pb-[4px] text-sm">
-                <span class="opacity-75">Jogging</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="flex pt-[32px] pl-[16px] rounded-tr-[30px] rounded-br-[30px] h-full bg-[#1A2151] w-100 grow">
-          <div class="playlist-header flex flex-row max-h-[240px]">
-            <div class="playlist-cover mr-[32px]">
-              <img class="rounded-[10px]" width="232" height="232" src="../images/playlist-cover.png"/>
-            </div>
-            <div class="playlist-description flex flex-col justify-center font-[roboto]">
-              <div class="mb-[32px]">
-                <span class="text-[16px] text-[#F2F6FF] opacity-[.70]">Playlist</span>
-                <h2 class="text-[#F2F6FF] text-[32px] font-bold">Feel Good Friday</h2>
-              </div>
-              <div>
-                <p class="text-[#F2F6FF] opacity-[.70] font-normal text-[12px]">Uplifting anthems to power you through 'til the weekend.</p>
-                <span class="text-[#F2F6FF] font-normal text-[12px]">Bryan</span>
-                <span class="text-[#F2F6FF] ml-[4px] font-light text-[12px]">3k likes</span>
-                <span class="text-[#F2F6FF] font-light text-[12px]">53 songs</span>
-                <span class="text-[#F2F6FF] ml-[4px] font-light text-[12px]">6 hr 7 min</span>
-              </div>
-            </div>
-          </div>
-          <div class="playlist-tracks">
-          </div>
-        </div>
+        <img src="../images/caret-down---filled(24x24)@1x.png" width="16" height="16"/>
+      </div>
+      <div class="user-menu-content mt-4">
+        <ul class="text-[#E3E8FF] text-sm px-4 py-2">
+          <li class="pb-1">
+            <a target="__blank" href="https://www.spotify.com/us/account/overview">Account</a>
+          </li>
+          <li class="pb-1">
+            <a target="__blank" href="https://www.spotify.com/us/account/apps/">Uninstall this App</a>
+          </li>
+          <li class="pb-1">
+            <a href={Routes.page_path(ExPotifyWeb.Endpoint, :index)}>Logout</a>
+          </li>
+        </ul>
       </div>
     </div>
-  </body>
-</html>
+    <%= live_render(@conn, ExPotifyWeb.PlaybackLive) %>
+    <div class="items-baseline rounded-[30px] w-[256px] bg-[#161C44] h-full">
+      <nav class="pt-[16px] pl-[24px]">
+        <h2 class="font-[roboto] text-[40px] font-bold text-[#DB00FF]">
+          Ex<span class="text-[#9611FF] italic">Potify</span>
+        </h2>
+        <ul class="pt-[16px] text-[#F2F6FF]">
+          <li class="pb-[4px] cursor-pointer">
+            <span class="font-semibold">Home</span>
+          </li>
+          <li class="pb-[4px] cursor-pointer">
+            <span class="opacity-[0.7]">Search</span>
+          </li>
+          <li class="pb-[4px] cursor-pointer">
+            <span class="opacity-[0.7]">Library</span>
+          </li>
+        </ul>
+      </nav>
+      <div>
+        <%= live_render(@conn, ExPotifyWeb.PlaylistLive) %>
+      </div>
+    </div>
+      <%= live_render(@conn, ExPotifyWeb.PlaylistInfoLive) %>
+  </div>

@@ -61,20 +61,4 @@ config :tailwind,
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 
-config :spotify_ex,
-  client_id: "71a16af544cd4cd183e3a80824c383d5",
-  secret_key: "322265b877384c23bbc75c1216128d99",
-  callback_url: "http://localhost:4000/callback"
-
-config :spotify_ex,
-  scopes: [
-    "user-read-playback-state",
-    "user-read-recently-played",
-    "user-read-playback-position",
-    "user-top-read",
-    "playlist-read-private",
-    "user-read-email",
-    "user-library-read"
-  ]
-
 import_config "#{config_env()}.exs"
